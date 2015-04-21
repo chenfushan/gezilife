@@ -1,0 +1,192 @@
+<!DOCUCOPY html>
+<html>
+<head>
+	  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport"/>
+	<title>格子人生</title>
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+<style type="text/css">
+	body{
+		font-family:"Helvetica Neue","Microsoft Yahei",Helvetica,Arial,sans-serif;
+		font-weight: bold;
+		font-size:20px;
+	}
+	input,select{
+		color:#00AF50;
+	}
+	input{
+		text-align: center;
+	}
+	.title{
+		margin:0.5em auto;
+		font-size: 26px;
+		
+	}
+	.sub-title{
+		font-size:20px;
+		margin:1em auto;
+	}
+	.littlerec{
+          border: solid;
+          border-width: 1px;
+          margin:0.3em 0.3em;
+          padding:0;
+          width:20px;
+          height:20px;
+          vertical-align: 50%;
+          float: left;
+	}
+	.box{
+		width:32;
+		height:32;
+		float: left;
+	}
+	.date{
+		 width:40px;
+	}
+</style>
+</head>
+<body>
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="../js/dateselect.js"></script>
+<div class="container text-center">
+	<div class="title text-center"><span style="color:red">人</span><span style="color:#FFBC0B">生</span><span style="color:blue">添</span><span style="color:green">色</span></div>
+	<div class="sub-title text-center">事件名称</div>
+	<input type="text" name="event" id="event" style="width:60%">
+	<div class="sub-title">事件颜色</div>
+	<div class="text-center row" style="margin:auto auto;padding:auto auto;width:256px">
+		<div class="box" id="c0">			
+			<svg width="32" height="32" viewPort="0 0 120 120" version="1.1"
+     xmlns="http://www.w3.org/2000/svg">	
+     <rect x="6" y="6" width="20" height="20" style="fill:#fe0000;
+"></rect>
+      <polyline fill="none" stroke="black" style="stroke-width:2"
+              points="2,16 2,30 16,30 "/></polyline>
+      <polyline fill="none" stroke="black" style="stroke-width:2"
+              points="16,2 30,2 30,16 "/></polyline>
+			</svg>
+		</div>
+		<div class="box"  id="c1">			
+			<svg width="32" height="32" viewPort="0 0 120 120" version="1.1"
+     xmlns="http://www.w3.org/2000/svg">	
+     <rect x="6" y="6" width="20" height="20" style="fill:#ffc000;
+"></rect>
+			</svg>
+		</div>
+		<div class="box"  id="c2">			
+			<svg width="32" height="32" viewPort="0 0 120 120" version="1.1"
+     xmlns="http://www.w3.org/2000/svg">	
+     <rect x="6" y="6" width="20" height="20" style="fill:#ffff00;
+"></rect>
+			</svg>
+		</div>
+		<div class="box"  id="c3">			
+			<svg width="32" height="32" viewPort="0 0 120 120" version="1.1"
+     xmlns="http://www.w3.org/2000/svg">	
+     <rect x="6" y="6" width="20" height="20" style="fill:#92D14F;
+"></rect>
+			</svg>
+		</div>
+		<div class="box"  id="c4">			
+			<svg width="32" height="32" viewPort="0 0 120 120" version="1.1"
+     xmlns="http://www.w3.org/2000/svg">	
+     <rect x="6" y="6" width="20" height="20" style="fill:#00B0F3;
+"></rect>
+			</svg>
+		</div>
+		<div class="box"  id="c5">			
+			<svg width="32" height="32" viewPort="0 0 120 120" version="1.1"
+     xmlns="http://www.w3.org/2000/svg">	
+     <rect x="6" y="6" width="20" height="20" style="fill:#0071C1;
+"></rect>
+			</svg>
+		</div>
+		<div class="box"  id="c6">			
+			<svg width="32" height="32" viewPort="0 0 120 120" version="1.1"
+     xmlns="http://www.w3.org/2000/svg">	
+     <rect x="6" y="6" width="20" height="20" style="fill:#012060;
+"></rect>
+			</svg>
+		</div>
+		<div class="box"  id="c7">			
+			<svg width="32" height="32" viewPort="0 0 120 120" version="1.1"
+     xmlns="http://www.w3.org/2000/svg">	
+     <rect x="6" y="6" width="20" height="20" style="fill:#7030A2;
+"></rect>
+			</svg>
+		</div>
+		<!--<span class="littlerec" style="background-color:#ffc000" id="c1"></span>
+		<span class="littlerec" style="background-color:#ffff00" id="c2"></span>
+		<span class="littlerec" style="background-color:#92D14F" id="c3"></span>
+		<span class="littlerec" style="background-color:#00B0F3" id="c4"></span>
+		<span class="littlerec" style="background-color:#0071C1" id="c5"></span>
+		<span class="littlerec" style="background-color:#012060" id="c6"></span>
+		<span class="littlerec" style="background-color:#7030A2" id="c7"></span>
+		     <span class="littlerec" style="background-color:#fe0000" id="c0"></span>-->
+	</div>
+	<div class="sub-title">开始时间</div>
+	<div class="row">
+		<div class="col-xs-5 text-right" style="padding-right:0">
+			<select name="dateSelect" id="startDateYear">
+				<option value="1950">1950</option>
+			</select>
+			<span>年</span>
+		</div>
+		<div class="col-xs-7 text-left">
+			<select name="dateSelect" id="startDateMonth" class="date"></select>
+			<span>月</span>
+			<select name="dateSelect" id="startDateDay" class="date"></select>
+			<span>日</span>
+		</div>
+	</div>
+	<div class="sub-title">结束时间</div>
+		<div class="row">
+		<div class="col-xs-5 text-right" style="padding-right:0">
+			<select name="dateSelect" id="endDateYear"></select>
+			<span>年</span>
+		</div>
+		<div class="col-xs-7 text-left">
+			<select name="dateSelect" id="endDateMonth"  class="date"></select>
+			<span>月</span>
+			<select name="dateSelect" id="endDateDay" class="date"></select>
+			<span>日</span>
+		</div>
+	</div>
+	
+	<div class="row">
+		<hr>
+		<div>
+			<button type="button" id="reloadbtn" class="btn btn-success btn btn-default btn-lg btn-block" onclick="reloadPage()">确定</button>
+		</div>
+	</div>
+	
+	<div class="row">
+		<hr>
+		<div>
+			<button type="button" id="reloadbtn" class="btn btn-info btn btn-default btn-lg btn-block" onclick="rePage()">取消</button>
+		</div>
+	</div>
+</div>
+	<script>
+		$(document).ready(function() {
+			
+		});
+		function reloadPage () {
+			$('.row').hide('400', function() {
+				
+			});
+		}
+		function rePage () {
+			$('.sub-title').show();
+		}
+	</script>
+</body>
+</html>

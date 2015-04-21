@@ -1,0 +1,37 @@
+#dateselectpage{
+		font-family:"Helvetica Neue","Microsoft Yahei",Helvetica,Arial,sans-serif;
+		font-weight: bold;
+		font-size:20px;
+	}
+	#dateselectpage input{
+		text-align: center;
+		color:rgb(2,121,219);
+		border-color: #666;
+	}
+	#dateselectpage .title{
+		margin:0.2em auto;
+		font-size: 26px;
+		
+	}
+	#dateselectpage #eventname{
+			color:#666;
+	}
+	#dateselectpage .sub-title{
+		font-size:20px;
+		margin:0.5em auto;
+	}
+	#dateselectpage .littlerec{
+          border: solid;
+          border-width: 1px;
+          margin:0.3em 0.3em;
+          padding:0;
+          width:20px;
+          height:20px;
+          vertical-align: 50%;
+          float: left;
+	}
+	#dateselectpage .box{
+		width:32;
+		height:32;
+		float: left;
+	}

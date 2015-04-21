@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+	<title>格子人生</title>
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+<style type="text/css">
+
+	body{
+		font-family:"Helvetica Neue","Microsoft Yahei",Helvetica,Arial,sans-serif;
+		background-color: #fff;
+/*		background: -webkit-linear-gradient(top, rgb(24,145,244),rgb(9,129,228),rgb(2,121,219));
+		background-image: -moz-linear-gradient(top, rgb(24,145,244),rgb(9,129,228),rgb(2,121,219));
+		background-image: -ms-linear-gradient(top, rgb(24,145,244),rgb(9,129,228),rgb(2,121,219));
+		background-image: -o-linear-gradient(top, rgb(24,145,244),rgb(9,129,228),rgb(2,121,219));*/
+		color:#fff;
+		font-weight: bold;
+	}
+	header{
+		margin-top:6em;
+		margin-bottom: 9em;
+	}
+	.title{
+		font-size: 30px;	
+		width: 60%;
+
+	}
+	.footer{
+
+		width: 100%;
+	}
+	#createbutton{
+		width: 60%;
+		border:none;
+		margin:0 auto;
+	}
+/*	.nine{
+		width:30px;
+		height:30px;
+		float: center;
+	}*/
+	img{
+		z-index: 3;
+		margin-left: auto;
+		margin-right: auto;
+	}
+</style>
+<body>	
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<header class="text-center">
+<!-- 	<div class="title center-block">格&nbsp;子&nbsp;人&nbsp;生
+		<hr style="margin-top:0.3em;margin-bottom:0.5em">
+	</div>
+	<div class="detail">
+		绘 制 A 4 纸 上 3 0 × 3 0 的 格 子 人 生
+	</div> -->
+<img src="./img/bigger.png" class="img-responsive">
+</header>
+	<!-- <img class="center-block nine" src="./img/icon9.png"> -->
+<div class="text-center container footer">
+	<div class="text-center center-block" id="createbutton" onclick="go_forward()">
+		<img src="./img/iconMain.png" class="img-responsive" >
+	<div>
+</div>
+<script type="text/javascript">
+	function go_forward(){
+		location.href='./html/inital.html';
+	}
+ $(document).ready(function(){
+ 		var winheight=$(window).height();
+ 		// $('body').height(winheight-84);
+ 		// $(".nine").css({
+ 		// 	'margin-top':winheight/4,
+ 		// })
+ })
+</script>
+</body>

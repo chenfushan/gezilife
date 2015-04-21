@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+	<meta name="description" content="格子人生">
+	<title>格子人生</title>
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+	<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/dateselectpage.css">
+	<link rel="shortcut icon" href="../img/weblogo.ico">
+	<style type="text/css">
+	body{
+		font-family:"Helvetica Neue","Microsoft Yahei",Helvetica,Arial,sans-serif;
+	}
+	.title{
+		font-weight: bold;
+		font-size: 26px;
+		/*margin-bottom: 20px;*/
+	}
+	.littlerec{
+		text-align: center;
+		border: none;
+		margin:0 0.2em;
+		padding:0;
+		width:18px;
+		height:18px;
+		font-size: 12px;
+		line-height: 18px;
+		vertical-align: 50%;
+		float: left;
+	}
+	.symbolbox{
+		font-size: 12px;
+	}
+
+	.event{
+		line-height:18px;
+		height:18px;
+		color:#00AF50;
+		font-weight: bold;
+		white-space:nowrap; 
+		text-overflow:ellipsis;		
+		overflow: hidden;
+		padding-right: 0;
+	}
+	footer{
+		position: fixed;
+		bottom: 0;
+		width: 100%;
+		height:50px;
+		line-height: 50px;
+		background-color: rgba(211,211,211,0.5);
+	}
+	.btn-add,.btn-share,.btn-cancel{
+		width: 100%;
+		font-size: 16px;
+		font-weight: bold;
+		color:#fff;
+	}
+	.btn-add{
+		background-color: rgb(2,121,219);
+	}
+	.btn-share{
+		background-color: #40C381;
+	}
+	.btn-cancel{
+		background-color: #666;
+	}
+	</style>
+
+</head>
+<body>
+	<div class="hide">
+		<img src="../img/GELOGO.png">
+	</div>
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background:rgba(0, 0, 0, 0.5);">
+		<div class="modal-dialog">
+			<img src="../img/share.png" class="img-responsive">
+		</div>
+	</div>
+	<!-- <img src="../img/GZLOGO.png" alt="logopic" style="width:300px; height:300px; display:none"> -->
+
+
+	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+	<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+	<!-- <script type="text/javascript" src="../js/testcanvas.js"></script> -->
+	<script src="../js/dateselect.js"></script>
+	<script type="text/javascript" src="../js/getUrl.js"></script>
+
+	<div id="gripage">
+
+		<div class="container" id="symbolarea">
+			<div class="title text-center center-block" style="width:60%">
+				<!-- 			<span style="color:red">格</span><span style="color:#ff9900">子</span><span style="color:blue">人</span><span style="color:green">生</span> -->
+				<img src="../img/gezilife.png" class="img-responsive">
+			</div>
+			<div class="row symbolbox" style="margin-top:0.5em;margin-bottom:0.5em">
+				<div class="col-xs-2"></div>
+				<div class="col-xs-4 event">
+					<span class="littlerec" style="background-color:rgb(2,121,219)"></span>已度人生
+				</div>
+				<div class="col-xs-4 event"><span class="littlerec" style="background-color:#aaaaaa"></span>未度人生</div>
+				<div class="col-xs-2"></div>
+			</div>
+			<!-- <hr> -->
+		</div>
+		<div style="padding-left:15px;font-size:10px;">期望年龄:<span id="age"></span>岁(一个月/格)</div>
+		<div id="canvasarea" class="container">
+			<canvas id="canvasOne"></canvas>
+		</div>
+		<footer class="addandshare">
+			<div class="container">
+				<div class="col-xs-6">
+					<button class="btn btn-share" data-toggle="modal" data-target="#myModal">分享</button>
+				</div>
+				<div class="col-xs-6">
+					<button class="btn btn-add" onclick="dateselect()">人生添色</button>
+				</div>
+			</div>
+		</footer>
+		<footer class="createntry hide">
+			<div class="container">
+				<button class="btn btn-add" onclick="goindex()">创建我的格子人生</button>
+			</div>
+		</footer>
+	</div>
+
+	<div id="dateselectpage" hidden>
+		<div class="container text-center">
+			<div class="title text-center center-block" style="width:60%">
+				<img src="../img/gezicolor.png" class="img-responsive" />
+			</div>
+			<div class="sub-title text-center" style="margin-top:1em">事件名称</div>
+			<input type="text" name="eventname" id="eventname" style="width:70%" placeholder="输入事件">
+			<div class="sub-title">事件颜色</div>
+			<div class="text-center row" style="margin:auto auto;padding:auto auto;width:256px">
+				<div class="box" id="c0" onclick="changeColor('c0', '#c00000')">			
+					<svg width="32" height="32" viewPort="0 0 120 120" version="1.1"
+					xmlns="http://www.w3.org/2000/svg">	
+						<rect x="6" y="6" width="20" height="20" style="fill:#c00000;"></rect>
+						<polyline fill="none" stroke="black" class="polylinehide" style="stroke-width:2"
+						points="2,16 2,30 16,30 "/></polyline>
+						<polyline fill="none" stroke="black" class="polylinehide" style="stroke-width:2"
+						points="16,2 30,2 30,16 "/></polyline>
+					</svg>
+				</div>
+				<div class="box"  id="c1" onclick="changeColor('c1', '#ff0000')">
+					<svg width="32" height="32" viewPort="0 0 120 120" version="1.1"
+					xmlns="http://www.w3.org/2000/svg">			
+						<rect x="6" y="6" width="20" height="20" style="fill:#ff0000;"></rect>
+						<polyline fill="none" stroke="black" class="polylinehide" style="stroke-width:2"
+						points="2,16 2,30 16,30 "/></polyline>
+						<polyline fill="none" stroke="black" class="polylinehide" style="stroke-width:2"
+						points="16,2 30,2 30,16 "/></polyline>
+					</svg>
+				</div>
+				<div class="box"  id="c2" onclick="changeColor('c2', '#c0ff00')">			
+					<svg width="32" height="32" viewPort="0 0 120 120" version="1.1"
+					xmlns="http://www.w3.org/2000/svg">	
+						<rect x="6" y="6" width="20" height="20" style="fill:#c0ff00;"></rect>
+						<polyline fill="none" stroke="black" class="polylinehide" style="stroke-width:2"
+						points="2,16 2,30 16,30 "/></polyline>
+						<polyline fill="none" stroke="black" class="polylinehide" style="stroke-width:2"
+						points="16,2 30,2 30,16 "/></polyline>
+					</svg>
+				</div>
+				<div class="box"  id="c3" onclick="changeColor('c3', '#00b050')">			
+					<svg width="32" height="32" viewPort="0 0 120 120" version="1.1"
+					xmlns="http://www.w3.org/2000/svg">	
+						<rect x="6" y="6" width="20" height="20" style="fill:#00b050;"></rect>
+						<polyline fill="none" stroke="black" class="polylinehide" style="stroke-width:2"
+						points="2,16 2,30 16,30 "/></polyline>
+						<polyline fill="none" stroke="black" class="polylinehide" style="stroke-width:2"
+						points="16,2 30,2 30,16 "/></polyline>
+					</svg>
+				</div>
+				<div class="box"  id="c4" onclick="changeColor('c4', '#35ff90')">			
+					<svg width="32" height="32" viewPort="0 0 120 120" version="1.1"
+					xmlns="http://www.w3.org/2000/svg">	
+						<rect x="6" y="6" width="20" height="20" style="fill:#35ff90;"></rect>
+						<polyline fill="none" stroke="black" class="polylinehide" style="stroke-width:2"
+						points="2,16 2,30 16,30 "/></polyline>
+						<polyline fill="none" stroke="black" class="polylinehide" style="stroke-width:2"
+						points="16,2 30,2 30,16 "/></polyline>
+					</svg>
+				</div>
+				<div class="box"  id="c5" onclick="changeColor('c5', '#00b0f0')">			
+					<svg width="32" height="32" viewPort="0 0 120 120" version="1.1"
+					xmlns="http://www.w3.org/2000/svg">	
+						<rect x="6" y="6" width="20" height="20" style="fill:#00b0f0;"></rect>
+						<polyline fill="none" stroke="black" class="polylinehide" style="stroke-width:2"
+						points="2,16 2,30 16,30 "/></polyline>
+						<polyline fill="none" stroke="black" class="polylinehide" style="stroke-width:2"
+						points="16,2 30,2 30,16 "/></polyline>
+					</svg>
+				</div>
+				<div class="box"  id="c6" onclick="changeColor('c6', '#7030a0')">			
+					<svg width="32" height="32" viewPort="0 0 120 120" version="1.1"
+					xmlns="http://www.w3.org/2000/svg">	
+						<rect x="6" y="6" width="20" height="20" style="fill:#7030a0;"></rect>
+						<polyline fill="none" stroke="black" class="polylinehide" style="stroke-width:2"
+						points="2,16 2,30 16,30 "/></polyline>
+						<polyline fill="none" stroke="black" class="polylinehide" style="stroke-width:2"
+						points="16,2 30,2 30,16 "/></polyline>
+					</svg>
+				</div>
+				<div class="box"  id="c7" onclick="changeColor('c7', '#ff6699')">			
+					<svg width="32" height="32" viewPort="0 0 120 120" version="1.1"
+					xmlns="http://www.w3.org/2000/svg">	
+						<rect x="6" y="6" width="20" height="20" style="fill:#ff6699;"></rect>
+						<polyline fill="none" stroke="black" class="polylinehide" style="stroke-width:2"
+						points="2,16 2,30 16,30 "/></polyline>
+						<polyline fill="none" stroke="black" class="polylinehide" style="stroke-width:2"
+						points="16,2 30,2 30,16 "/></polyline>
+					</svg>
+				</div>
+			</div>
+			<div class="sub-title">开始时间</div>
+			<div class="row">
+				<div class="date-input">
+					<input type="text" data-role="datebox" id="startDate" data-inline="true" value="1990-01" class="scroller" name="scroller" />
+				</div>
+			</div>
+			<div class="sub-title">结束时间</div>
+			<div class="row">
+				<div class="date-input">
+					<input type="text" data-role="datebox" id="endDate" data-inline="true" value="1990-01" class="scroller" name="scroller" />
+				</div>
+			</div>
+		</div>
+		<footer class="confirm">
+			<div class="container">
+				<div class="col-xs-6">
+					<button class="btn btn-cancel" onclick="backPage()">取消</button>
+				</div>
+				<div class="col-xs-6">
+					<button class="btn btn-add" onclick="goPage()">确定</button>
+				</div>
+			</div>
+		</footer>
+	</div>
+<link href="../css/mobiscroll.custom-2.5.0.min.css" rel="stylesheet" type="text/css" />
+<script src="../js/mobiscroll.custom-2.5.0.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+var birthday = "0";
+var birthYear;
+var birthMonth;
+var ctx;
+var length = 10;
+var lifelong;
+var currSelectColorId = "c1";
+var currSelectColor = "#37DE8F";
+var userId;
+var lock;
+var age;
+var name;
+var max=0;
+var maxdate;
+var parentpoint;
+var maxyear;
+var pflag=0;
+var newUrl;
+function goindex(){
+	location.href='../index.html';
+}
+$(document).ready(function(){
+	var theCanvas = document.getElementById("canvasOne");
+	if (!theCanvas || !theCanvas.getContext) {
+		alert("false");
+	}
+	// alert($(document).width());
+	// alert($.browser.version)
+	ctx = theCanvas.getContext("2d");	
+	age=getUrlParam("age");
+	$("#age").text(age);
+
+	userId=getUrlParam("userId");
+	birthday=getUrlParam("birthday");
+	birthYear=birthday.substr(0,4);
+	var parentYear=parseInt(birthYear)+70;
+	maxyear=parseInt(birthYear)+parseInt(age);
+	birthMonth=birthday.substr(4,2);
+	var parent=parseFloat(parentYear)+ birthMonth;
+	$('#startDate').val(birthYear+'-'+birthMonth);
+	$('#endDate').val(birthYear+'-'+birthMonth);
+	//debug code
+	// alert("age="+age+"|userId="+userId+"|birthday="+birthday);
+
+	// var Request = new Object(); 
+	// Request = GetRequest(); 
+	// name=Request['name'];
+	//get Name
+	var xmlhttp;
+	if (window.XMLHttpRequest) {
+		xmlhttp = new XMLHttpRequest();
+	}else{
+		xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	var url = "userId="+userId;
+	// alert(url);
+	xmlhttp.open("POST","../php/selectUser.php",false);
+	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	xmlhttp.onreadystatechange = function() {
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			var Info = xmlhttp.responseText;
+			if (Info != "DBF") {
+				name = Info;
+				//debug code
+				// alert(name);
+			}else{
+				alert("系统繁忙！");
+			}		
+		}
+	}
+	xmlhttp.send(url);
+
+	lifelong=parseInt(age)*12/30;
+	var symbolareawidth = $('#symbolarea').width();
+	$('#canvasarea').css('width', symbolareawidth - (symbolareawidth%30));
+	$('#canvasarea').css('padding-right', '0');
+	$('#canvasarea').css('padding-left', '0');
+	length = (symbolareawidth - (symbolareawidth%30) )/30;
+	// console.log("document width:", $(document).width());
+	console.log("length:",length);
+	// $('#canvasOne').css('height', lifelong * length);
+	// $('#canvasOne').css('width', length * 30);
+	theCanvas.width = length*30;
+	theCanvas.height = lifelong * length;
+	console.log("lifelong:",lifelong);
+	// ctx.fillStyle = "#0000ff";
+	// ctx.strokeRect(0, 0, 20, 20);
+	for (var i = 0; i <lifelong ; i++) {
+		for (var j = 0; j < 30; j++) {
+			ctx.fillStyle = "#aaaaaa";
+			//ctx.lineWidth="1";
+			// ctx.strokeRect(length*j, length*i, length - 2, length - 2);
+			ctx.fillRect(length*j, length*i, length - 2, length - 2);
+			// console.log("rect length:", length);
+		}
+		// ctx.fillRect(x*i, y*i, length, length);	
+	}
+	var today=new Date();
+	var tomonth=today.getMonth()+1;
+	if(tomonth<10) tomonth='0'+tomonth
+	var toyear=today.getFullYear();
+	console.log(today);
+	console.log(tomonth);
+	console.log(toyear);
+	ctx.fillStyle = "rgb(2,121,219)";
+
+	var lengthRect = (toyear - birthYear)*12 + (tomonth - birthMonth);
+	if(lengthRect>max){
+		max=lengthRect;
+		maxdate=String(toyear)+String(tomonth);
+		console.log("maxdate"+maxdate);
+	}
+	//debug code
+	// alert("lengthRect="+lengthRect+"|lifelong="+lifelong+"|name="name);
+
+	for (i=0; i < lifelong && lengthRect > 0; i++) {
+		for (j=0; j < 30 && lengthRect > 0; j++) {
+			// ctx.fillStyle = "#ffff00";
+			// ctx.lineWidth="1";
+			console.log(ctx.fillStyle);
+			// ctx.strokeRect(length*j, length*i, length - 2, length -2);
+			ctx.fillRect(length*j, length*i, length -2 , length - 2);
+			lengthRect = lengthRect-1;	
+			// alert(i + " " + j);
+		}
+		j = 0;
+					// ctx.fillRect(x*i, y*i, length, length);	
+	}
+
+
+	ctx.fillStyle = "#c00000";
+	////////////////上为初始化canvas格子///////////////////
+	//$('#dateselectpage').hide();
+
+	lock=getUrlParam("lock");
+	if(lock=="true"){
+		$('.addandshare').addClass("hide");
+		$('.createntry').removeClass("hide");
+		var xmlhttp;
+		if (window.XMLHttpRequest) {
+			xmlhttp = new XMLHttpRequest();
+		}else{
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		var url = "userId="+userId;
+		// alert(url);
+		xmlhttp.open("POST","../php/selectAction.php",true);
+		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xmlhttp.onreadystatechange = function() {
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				var Info = xmlhttp.responseText;
+				Info = eval("("+Info+")");
+				for (var i = 0; i < Info.length; i++) {
+					var actionContent=Info[i].actionContent;
+					var startDate=Info[i].startDate;
+					var endDate=Info[i].endDate;
+					var actionColor = Info[i].actionColor;
+					// ctx.fillStyle=Info[i].actionColor;
+					drawRect(actionContent, startDate, endDate, actionColor);
+				};
+				// alert(Info);
+
+				// drawRect("陪伴父母",maxdate,parent,"#ffca21");
+			}
+		}
+		xmlhttp.send(url);
+		// alert(decodeURI(name));
+		$("title").html("一秒钟看透"+name+"的前半生");
+	}else{
+		sharePage();
+		// window.location.search='&age='+age+"&birthday="+birthday+"&userId="+userId+"&lock=true";
+	}
+
+	if (birthday == "0") {
+		alert("请添加您的出生日期");
+		document.location.href="index.html";
+	}
+
+	$('.polylinehide').hide();
+	$('#c0').children('svg').children('.polylinehide').show();
+});
+
+function drawRect (actionContent, startDate, endDate, actionColor) {
+	ctx.fillStyle = actionColor;
+	var startYear = startDate.substr(0, 4);
+	var startMonth = startDate.substr(5, 2);
+
+	var endYear = endDate.substr(0, 4);
+	var endMonth = endDate.substr(5, 2);
+		// alert(startYear + " " + startMonth + " " + endYear + " " + endMonth);
+		var startRect = (startYear - birthYear)*12 + (startMonth - birthMonth);
+		var lengthRect = (endYear - startYear)*12 + (endMonth - startMonth);
+		if(lengthRect>max){
+			max=lengthRect;
+			maxdate=endDate;
+		}
+		var rowhtml = "<div class=\"row  symbolbox\" style=\"margin-top:0.5em;margin-bottom:0.5em\">";
+		var addeventhtml = "<div class=\"col-xs-4 event\" ><span class=\"littlerec\" style=\"background-color:"+ ctx.fillStyle + "\"></span>"+ actionContent+"</div>";
+		var symbolbox = $('.symbolbox').children('div');
+		// alert(symbolbox.length);
+		if ((symbolbox.length-4) % 3 == 0) {
+			var innerHtml = rowhtml + addeventhtml + "</div>";
+			// alert(innerHtml);
+			$('#symbolarea').append(innerHtml);
+		}else{
+			$('.symbolbox:last').append(addeventhtml);
+			// alert(symbolboxhtml);
+		}
+		
+		var i = Math.floor(startRect/30);
+		var j = startRect%30;
+		// alert(i + "-" + j);
+		for (; i < lifelong && lengthRect > 0; i++) {
+			for (; j < 30 && lengthRect > 0; j++) {
+				console.log(ctx.fillStyle);
+				// ctx.strokeRect(length*j, length*i, length - 2, length - 2);
+				ctx.fillRect(length*j, length*i, length - 2, length - 2);
+				lengthRect = lengthRect-1;	
+				// alert(i + " " + j);
+			}
+			j = 0;
+			// ctx.fillRect(x*i, y*i, length, length);	
+		}
+		
+	}
+
+//这个代码是动态添加css和js的，暂时没用了
+
+
+/////////////////////////////////////////
+function dateselect () {
+	$('div#gripage').hide('400',function(){
+		$('#dateselectpage').show('400');
+	});
+}
+
+function backPage () {
+	$('#dateselectpage').hide('400', function() {
+			/*var cssload = document.getElementById('cssload');
+        	var dateselectcss = cssload.getElementsByTagName("link");
+        	cssload.removeChild(dateselectcss[0]);*/
+        	$('div#gripage').show('400', function() {
+
+        	});
+        });
+}
+
+function goPage () {
+	var startDate=$('#startDate').val()+'-01';
+	var date=$('#startDate').val().split('-');
+	var startYear =parseInt(date[0]);
+	var startMonth =parseInt(date[1]);
+	var startDate=startYear+'-'+startMonth+'-01';
+		// var startDay = $('#startDateDay').val();
+		var endDate=$('#endDate').val()+'-01';
+		var temp=$('#endDate').val();
+		var date=$('#endDate').val().split('-');
+		var endYear = parseInt(date[0]);
+		var endMonth = parseInt(date[1]);
+
+
+
+		// var endDay = $('#endDateDay').val();
+		var endDate=endYear+'-'+endMonth+'-01';
+		var startRect = (startYear - birthYear)*12 + (startMonth - birthMonth);
+		var lengthRect = (endYear - startYear)*12 + (endMonth - startMonth);
+		if(lengthRect>max){
+			max=lengthRect;
+		}
+		//获取当前时间的年月
+		var currDate = new Date();
+		var currYear = currDate.getFullYear();
+		var currMonth = currDate.getMonth();
+
+		//判断事件结束时间和当前时间的前后
+		var behind = (currYear - endYear)*12 + (currMonth+1-endMonth);
+
+		var eventname = $('#eventname').val();
+		if(endYear>maxyear||startYear>maxyear){
+			alert("另一个世界不归你掌控");
+		}
+		if (eventname == "") {
+			if (behind >= 0) {
+				alert("走过的时光总要给它安个名义！");
+				return false;
+			}else{
+				alert("未来的美好需要贴上标签！");
+				return false;
+			}
+			
+		}
+
+		//debug code
+		// alert("eventname="+eventname+"&lengthRect="+lengthRect+"&startRect="+startRect);
+
+		if(eventname.length>6){
+			alert("你的话太多了吧，时间名称不要超过6个字哦！");
+			return false;
+		}
+
+		if (lengthRect < 0) {
+			alert("时间不能倒流！");
+			return false;
+		}
+		if (lengthRect == 0) {
+			alert("时间不会静止！");
+			return false;
+		}
+
+		if (startRect < 0) {
+			alert("那个时候你还在和旁边的蝌蚪赛跑!");
+			return false;
+		}
+		$('#startDate').val(temp);
+		$('#endDate').val(temp);
+
+		$.ajax({
+			type:'POST',
+			url:'../php/createAction.php',
+			dataType:'text',
+			data:"userId="+userId+"&actionContent="+eventname+"&startDate="+startDate+"&endDate="+endDate+"&actionColor="+ctx.fillStyle,
+			success:function(data){
+			},
+			error:function () {
+				alert("系统繁忙请稍后再试");
+				return;
+			}
+		});
+		//清空输入内容
+		$('#eventname').val("");
+
+		var rowhtml = "<div class=\"row  symbolbox\" style=\"margin-top:0.5em;margin-bottom:0.5em\">";
+		var addeventhtml = "<div class=\"col-xs-4 event\" ><span class=\"littlerec\" style=\"background-color:"+ ctx.fillStyle + "\"></span>"+ eventname+"</div>";
+		var symbolbox = $('.symbolbox').children('div');
+		if ((symbolbox.length-4) % 3 == 0) {
+			var innerHtml = rowhtml + addeventhtml + "</div>";
+			// alert(innerHtml);
+			$('#symbolarea').append(innerHtml);
+		}else{
+			// var symbolboxlength = $('.symbolbox').length;
+			// alert(symbolboxlength);
+			$('.symbolbox:last').append(addeventhtml);
+			// alert(symbolboxhtml);
+		}
+		// var littlerec = symbolbox[symbolbox.length-1].children('div');
+		// alert(symbolbox.length);
+
+		
+
+		$('#dateselectpage').hide('400', function() {
+			//移除时间选择页面的css文件
+			/*var cssload = document.getElementById('cssload');
+        	var dateselectcss = cssload.getElementsByTagName("link");
+        	cssload.removeChild(dateselectcss[0]);*/
+        	$('div#gripage').show('400', function() {
+        		var i = Math.floor(startRect/30);
+        		var j = startRect%30;
+        		for (; i < lifelong && lengthRect > 0; i++) {
+        			for (; j < 30 && lengthRect > 0; j++) {
+						// ctx.fillStyle = "#ffff00";
+						// ctx.lineWidth="1";
+						console.log(ctx.fillStyle);
+						// ctx.strokeRect(length*j, length*i, length - 2, length - 2);
+						ctx.fillRect(length*j, length*i, length - 2, length - 2);
+						lengthRect = lengthRect-1;	
+						// alert(i + " " + j);
+					}
+					j = 0;
+					// ctx.fillRect(x*i, y*i, length, length);	
+				}
+
+				changeColor(currSelectColorId, currSelectColor);
+			});
+
+
+        });
+	}
+
+	function changeColor (id, color) {
+		ctx.fillStyle = color;
+		// var poly = document.getElementsByTagName("svg");
+		// var polyparent = document.getElementsByTagName("polyline")[0].parentNode;
+		// polyparent.removeChild(document.getElementsByTagName("polyline")[0]);
+		// polyparent.removeChild(document.getElementsByTagName("polyline")[0]);
+		$('.polylinehide').hide();
+		// alert(ctx.fillStyle);
+		
+		// var inhtml = "<polyline fill=\"none\" stroke=\"black\" style=\"stroke-width:2\" points=\"2,16 2,30 16,30\"/></polyline> <polyline fill=\"none\" stroke=\"black\" style=\"stroke-width:2\" points=\"16,2 30,2 30,16 \"/></polyline>";
+		// var firstchild = document.getElementById(id);
+		// firstchild = firstchild.getElementsByTagName("svg");
+  //       var htmlcode = firstchild[0].innerHTML;
+  //       firstchild[0].innerHTML = htmlcode + inhtml;
+
+        // $("#"+id).children('svg').append(inhtml);
+        $("#"+id).children('svg').children('.polylinehide').show();
+        currSelectColorId = id.substring(1,2);
+        currSelectColorId = (Number(currSelectColorId) + 1)%8;
+        currSelectColorId = "c" + currSelectColorId.toString()
+        currSelectColor = $("#"+currSelectColorId).children('svg').children('rect').css('fill');
+        // alert(currSelectColor);
+      }
+
+      function sharePage(){
+      	var stateObject = {};
+      	var title = "一秒钟看透"+name+"的前半生";
+		//debug code
+		// alert(name);
+		 $("title").html("一秒钟看透"+name+"的前半生");
+
+		newUrl = "../html/main.html?userId="+userId+"&lock=true"+"&birthday="+birthday+"&age="+age+":80";
+		history.replaceState(stateObject,title,newUrl);
+	}
+
+	function shareBox(){
+				//计算还能陪伴父母的时间
+		if(pflag==1){
+			return false;
+		}
+		console.log("max:"+max);
+		var i = Math.floor(max/30);
+		var j = max%30;
+		parentpoint=70*12-max;
+		ctx.fillStyle="#FFCA21";
+		for (; i < lifelong && parentpoint > 0; i++) {
+			for (; j < 30 && parentpoint > 0; j++) {
+				ctx.fillRect(length*j, length*i, length - 2, length - 2);
+				parentpoint = parentpoint-1;	
+						// alert(i + " " + j);
+					}
+					j = 0;
+					// ctx.fillRect(x*i, y*i, length, length);	
+				}
+				var rowhtml = "<div class=\"row  symbolbox\" style=\"margin-top:0.5em;margin-bottom:0.5em\">";
+				var addeventhtml = "<div class=\"col-xs-4 event\" ><span class=\"littlerec\" style=\"background-color:"+ ctx.fillStyle + "\"></span>陪伴父母</div>";
+				var symbolbox = $('.symbolbox').children('div');
+		// alert(symbolbox.length);
+		if ((symbolbox.length-4) % 3 == 0) {
+			var innerHtml = rowhtml + addeventhtml + "</div>";
+			// alert(innerHtml);
+			$('#symbolarea').append(innerHtml);
+		}else{
+			$('.symbolbox:last').append(addeventhtml);
+			// alert(symbolboxhtml);
+		}
+		pflag=1;
+	}
+
+	$(function(){
+		$(".scroller").mobiscroll().date();
+
+		var currYear = (new Date()).getFullYear();  
+
+	      	//初始化日期控件
+	      	var opt = {
+				preset: 'date', //日期，可选：date\datetime\time\tree_list\image_text\select
+				theme: 'android-ics light', //皮肤样式，可选：default\android\android-ics light\android-ics\ios\jqm\sense-ui\wp light\wp
+				display: 'modal', //显示方式 ，可选：modal\inline\bubble\top\bottom
+				mode: 'scroller', //日期选择模式，可选：scroller\clickpick\mixed
+				lang:'zh',
+				dateFormat: 'yyyy-mm', // 日期格式
+				setText: '确定', //确认按钮名称
+				cancelText: '取消',//取消按钮名名称 
+				dateOrder: 'yyyymm', //面板中日期排列格式
+				dayText: '日', monthText: '月', yearText: '年',//面板中年月日文字
+				showNow: true,  
+				nowText: "今天",  
+            	startYear:1950, //开始年份  
+            	endYear:currYear + 100 //结束年份  
+            	//endYear:2099 //结束年份
+            };
+
+            $(".scroller").mobiscroll(opt);
+
+          });
+	</script>
+</body>
+</html>

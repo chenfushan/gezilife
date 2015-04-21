@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <script src="./js/jquery.js"></script>
+    <script>
+    $(document).ready(function() {
+        var xmlhttp;
+        if (window.XMLHttpRequest) {
+            xmlhttp = new XMLHttpRequest();
+        }else{
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        var url = "";
+        // alert(url);
+        xmlhttp.open("POST","https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx0f62fa624c959f2d&secret=efd23b9b00adef4894a6298db4248706",true);
+        xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                var Info = xmlhttp.responseText;
+                alert(Info);
+            }
+        }
+        xmlhttp.send(url);
+    });
+    
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
